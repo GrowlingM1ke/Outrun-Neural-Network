@@ -14,11 +14,12 @@ class Util:
     def limit(self, value, minimum, maximum):
         return max(minimum, min(value, maximum))
 
-    def project(self, p, cameraX, cameraY, cameraZ, cameraDepth, width, height, roadWidth):
+    def project(self, p, variable):
+        cameraX = variable.playerX * variable.roadWidth
         p["camera"]["x"] = (p["world"]["x"] or 0) - cameraX
         p["camera"]["y"] = (p["world"]["y"] or 0) - cameraX
         p["camera"]["z"] = (p["world"]["z"] or 0) - cameraX
-        p["screen"]["scale"] = cameraDepth/p["camera"]["z"]
-        p["screen"]["x"] = round((width / 2) + (p["screen"]["scale"] * p["camera"]["x"] * width / 2))
-        p["screen"]["y"] = round((height / 2) - (p["screen"]["scale"] * p["camera"]["y"] * height / 2))
-        p["screen"]["w"] = round((p["screen"]["scale"] * roadWidth * width / 2))
+        p["screen"]["scale"] = variable.cameraDepth/p["camera"]["z"]
+        p["screen"]["x"] = round((variable.width / 2) + (p["screen"]["scale"] * p["camera"]["x"] * variable.width / 2))
+        p["screen"]["y"] = round((variable.height / 2) - (p["screen"]["scale"] * p["camera"]["y"] * variable.height / 2))
+        p["screen"]["w"] = round((p["screen"]["scale"] * variable.roadWidth * variable.width / 2))

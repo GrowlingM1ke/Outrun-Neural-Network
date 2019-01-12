@@ -22,12 +22,8 @@ class Render:
         maxY = variable.height
         for x in range(0, variable.drawDistance):
             segment = variable.segments[(baseSegment.index + x) % len(variable.segments)]
-            self.Util.project(segment.p1, (variable.playerX * variable.roadWidth), variable.cameraHeight,
-                              variable.position, variable.cameraDepth, variable.width, variable.height,
-                              variable.roadWidth)
-            self.Util.project(segment.p2, (variable.playerX * variable.roadWidth), variable.cameraHeight,
-                              variable.position, variable.cameraDepth, variable.width, variable.height,
-                              variable.roadWidth)
+            self.Util.project(segment.p1, variable)
+            self.Util.project(segment.p2, variable)
 
             if segment.p1["camera"]["z"] <= variable.cameraDepth or segment.p2["screen"]["y"] >= maxY:
                 continue
@@ -38,7 +34,7 @@ class Render:
 
 
     def findSegment(self, variable):
-        return variable.segments[int(math.floor(variable.playerZ/variable.segmentLength) % len(variable.segments))]
+        return variable.segments[int(math.floor(variable.position/variable.segmentLength) % len(variable.segments))]
 
     def drawSegment(self, window, segment, width, lanes):
         x1 = segment.p1["screen"]["x"]
