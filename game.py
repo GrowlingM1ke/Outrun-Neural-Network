@@ -27,7 +27,6 @@ while 1:
     
     # Draw and update the screen
     render.loadScreen(screen, variable.sky, variable.hills, variable.trees)
-    #pygame.draw.polygon(screen, (100, 248, 100), [(50, 10), (100, 350), (200, 25)])
     render.loadRoad(variable, screen)
     pygame.display.flip()
 
