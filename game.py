@@ -28,6 +28,7 @@ while 1:
     # Draw and update the screen
     render.loadScreen(screen, variable.sky, variable.hills, variable.trees)
     render.loadRoad(variable, screen)
+    # Actually render the image
     pygame.display.flip()
 
     # Register player input
