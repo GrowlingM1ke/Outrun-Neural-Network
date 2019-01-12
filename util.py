@@ -15,10 +15,9 @@ class Util:
         return max(minimum, min(value, maximum))
 
     def project(self, p, variable):
-        cameraX = variable.playerX * variable.roadWidth
-        p["camera"]["x"] = (p["world"]["x"] or 0) - cameraX
-        p["camera"]["y"] = (p["world"]["y"] or 0) - cameraX
-        p["camera"]["z"] = (p["world"]["z"] or 0) - cameraX
+        p["camera"]["x"] = (p["world"]["x"] or 0) - variable.playerX * variable.roadWidth
+        p["camera"]["y"] = (p["world"]["y"] or 0) - variable.cameraHeight
+        p["camera"]["z"] = (p["world"]["z"] or 0) - variable.position
         p["screen"]["scale"] = variable.cameraDepth/p["camera"]["z"]
         p["screen"]["x"] = round((variable.width / 2) + (p["screen"]["scale"] * p["camera"]["x"] * variable.width / 2))
         p["screen"]["y"] = round((variable.height / 2) - (p["screen"]["scale"] * p["camera"]["y"] * variable.height / 2))

@@ -45,7 +45,7 @@ class Update:
 
     # Builds up the array of our road at the beginning or if our road finishes
     def resetRoad(self, variable):
-        for x in range(0, 500):
+        for x in range(1, 501):
             if math.floor(x / variable.rumbleLength) % 2 == 0:
                 variable.segments.append(Segment(x, variable, "dark"))
             else:
